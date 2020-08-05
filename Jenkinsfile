@@ -2,8 +2,8 @@ pipeline {
     agent any
     stages {
         stage('Demo pipeline'){
-            echo "Build number is $BUILD_NUMBER"
             steps {
+                echo "Build number is $BUILD_NUMBER"
                 script{
                     my_func(TEST)
                 }
