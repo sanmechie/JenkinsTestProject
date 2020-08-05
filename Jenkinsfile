@@ -17,9 +17,9 @@ pipeline {
         TEST = '1'
     }
 
+}
 
-    def my_func(my_var){
+
+def my_func(my_var){
         println(my_var)
     }
-
-}
