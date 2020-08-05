@@ -18,4 +18,5 @@ pipeline {
     def my_func(my_var){
         println(my_var)
     }
+    
 }
