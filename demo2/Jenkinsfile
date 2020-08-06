@@ -35,6 +35,40 @@ pipeline {
             }
         }
 
+        stage {
+          parallel{
+           stage('Stage1'){
+               steps{
+                   script {
+                       for(int i=0; i < 1000; i++){
+                           echo "Iterating  for $i"
+                           test(i)
+
+                       }
+
+                   }
+               }
+           }
+
+              stage('Stage2'){
+               steps{
+                   script {
+                       for(int i=0; i < 1000; i++){
+                           echo "Iterating  for $i"
+                           test(i)
+
+                       }
+
+                   }
+               }
+           }
+
+          }
+
+
+
+        }
+
 
 
     }
@@ -44,4 +78,9 @@ pipeline {
             echo 'Print irrpestive of build success  or fail'
         }
     }
+}
+
+
+def test(var) {
+    println(var)
 }
