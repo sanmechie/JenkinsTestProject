@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    environment {
+        RELEASE = 'PROD'
+    }
+
+    stages {
+        stage('Build'){
+         environment {
+             STAGE_NAME = 'BUILD'
+         }
+         steps {
+           echo "This is stage ${STAGE_NAME} and release is ${env.RELEASE}"
+
+         }
+
+
+        }
+        stage('Test'){
+            steps {
+                echo "This is release $RELEASE"
+            }
+        }
+
+        stage('Deploy'){
+            input {
+                message 'Deploy?'
+                ok 'Do it!'
+                paramaters {
+                    string(name: 'TARGET_ENV', default_value: 'QA', description:'This is QA env')
+                }
+            }
+            steps {
+                echo "Deploying release ${RELEASE} in environment ${TARGET_ENV}"
+            }
+        }
+
+
+
+    }
+
+    post {
+        always {
+            echo 'Print irrpestive of build success  or fail'
+        }
+    }
+}
