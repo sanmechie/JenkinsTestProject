@@ -35,7 +35,7 @@ pipeline {
             }
         }
 
-        stage {
+        stage('Parallel block') {
           parallel{
            stage('Stage1'){
                steps{
