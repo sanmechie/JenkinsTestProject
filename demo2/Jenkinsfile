@@ -26,7 +26,7 @@ pipeline {
             input {
                 message 'Deploy?'
                 ok 'Do it!'
-                paramaters {
+                parameters {
                     string(name: 'TARGET_ENV', default_value: 'QA', description:'This is QA env')
                 }
             }
