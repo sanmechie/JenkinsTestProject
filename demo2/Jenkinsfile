@@ -35,6 +35,13 @@ pipeline {
             }
         }
 
+        stage ('write text'){
+            steps{
+                echo 'Writing to text file'
+                writeFile file: 'test-results.txt', text: 'Passed'
+            }
+        }
+
         stage('Parallel block') {
           parallel{
            stage('Stage1'){
@@ -76,6 +83,10 @@ pipeline {
     post {
         always {
             echo 'Print irrpestive of build success  or fail'
+            
+        }
+        success {
+            archiveArtifacts 'test-results.txt'
         }
     }
 }
