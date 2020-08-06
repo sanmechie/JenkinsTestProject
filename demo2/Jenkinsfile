@@ -27,7 +27,7 @@ pipeline {
                 message 'Deploy?'
                 ok 'Do it!'
                 parameters {
-                    string(name: 'TARGET_ENV', default_value: 'QA', description:'This is QA env')
+                    string(name: 'TARGET_ENV', defaultValue: 'QA', description:'This is QA env')
                 }
             }
             steps {
