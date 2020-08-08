@@ -12,7 +12,8 @@ pipeline {
         stage('Build'){
             environment {
                 BUILD_ENV = 'PROD'
-                VERSION = "${powershell label: '', returnStdout: true, script: 'if (10 -lt 20) {Write-Host(10)}'}"
+                VERSION = getVersion()
+                // VERSION = powershell label: '', returnStdout: true, script: 'if (10 -lt 20) {Write-Host(10)}'
             }
             steps {
                 echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV} and version is ${env.VERSION}"
@@ -96,4 +97,12 @@ pipeline {
 
 def test(my_var){
     println('Printing' + my_var)
+}
+
+String getVersion(){
+    if (10 < 20){
+        return 10
+    } else{
+        return 20
+    }
 }
