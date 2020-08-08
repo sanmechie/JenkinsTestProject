@@ -3,7 +3,7 @@ pipeline {
     environment {
         RELEASE_NUMBER = '20.1'
     }
-    parametes {
+    parameters {
         booleanParam(name: 'RC', defaultValue: false, description: 'This is release check')
     }
 
