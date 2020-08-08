@@ -3,14 +3,18 @@ pipeline {
     environment {
         RELEASE_NUMBER = '20.1'
     }
+    parametes {
+        booleanParam(name: 'RC', defaultValue: false, description: 'This is release check')
+    }
 
     stages {
         stage('Build'){
             environment {
                 BUILD_ENV = 'PROD'
+                VERSION = "${script: 'def a= 10; def b = 20; if (a < b ) {println(a)}', returnStdOut: true}"
             }
             steps {
-                echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV}"
+                echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV} and version is ${VERSION}"
             }
         }
 
@@ -61,6 +65,15 @@ pipeline {
             steps {
                 echo "Writing file"
                 writeFile file: 'Result.txt', text : 'Thanos'
+            }
+        }
+
+        stage('Publish'){
+            when {
+                expression {return parmas.RC}
+            }
+            steps{
+                echo 'Publishing'
             }
         }
     }
