@@ -11,7 +11,7 @@ pipeline {
         stage('Build'){
             environment {
                 BUILD_ENV = 'PROD'
-                VERSION = "${pwsh(script: def a = 10; def b = 20; if (a < b ) {println(a)}, returnStdOut: true)}"
+                VERSION = script: def a = 10; def b = 20; if (a < b ) {println(a)}, returnStdOut: true"
             }
             steps {
                 echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV} and version is ${VERSION}"
