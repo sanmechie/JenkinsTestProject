@@ -15,7 +15,7 @@ pipeline {
                 VERSION = "${pwsh(script:'if(10 -lt 20){Write-Host(10)}', returnStdout: true)}"
             }
             steps {
-                echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV} and version is ${VERSION}"
+                echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV} and version is ${env.VERSION}"
             }
         }
 
