@@ -1,3 +1,5 @@
+@Library('github.com/sanmechie/JenkinsSharedPipeline')_
+
 pipeline {
     agent any
     parameters {
@@ -99,10 +101,10 @@ def test(my_var){
     println('Printing' + my_var)
 }
 
-String getVersion(){
-    if (10 < 20){
-        return 10
-    } else{
-        return 20
-    }
-}
+// String getVersion(){
+//     if (10 < 20){
+//         return 10
+//     } else{
+//         return 20
+//     }
+// }
