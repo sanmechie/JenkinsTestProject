@@ -1,12 +1,12 @@
 pipeline {
     agent any
-    enviornment {
+    environment {
         RELEASE_NUMBER = '20.1'
     }
 
     stages {
         stage('Build'){
-            enviornment {
+            environment {
                 BUILD_ENV = 'PROD'
             }
             steps {
@@ -46,10 +46,11 @@ pipeline {
             input {
                 message 'Deploy?'
                 ok 'Do it'
-            }
-            parameters{
+             parameters{
                 string(name: 'TAR_ENV', defaultValue: 'PROD', description: 'This is release env param')
+                }               
             }
+
             steps{
                 echo "Deploying release in ${TAR_ENV} with release number ${env.RELEASE_NUMBER}"
             }
