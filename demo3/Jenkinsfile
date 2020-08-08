@@ -1,17 +1,18 @@
 pipeline {
     agent any
-    environment {
-        RELEASE_NUMBER = '20.1'
-    }
     parameters {
         booleanParam(name: 'RC', defaultValue: false, description: 'This is release check')
+    }
+
+    environment {
+        RELEASE_NUMBER = '20.1'
     }
 
     stages {
         stage('Build'){
             environment {
                 BUILD_ENV = 'PROD'
-                VERSION = "${pwsh(script:'if(10 -lt 20){Write-Host(10)}', returnStdOut: true)}"
+                VERSION = "${pwsh(script:'if(10 -lt 20){Write-Host(10)}', returnStdout: true)}"
             }
             steps {
                 echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV} and version is ${VERSION}"
