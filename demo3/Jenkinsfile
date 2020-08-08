@@ -14,7 +14,7 @@ pipeline {
         stage('Build'){
             environment {
                 BUILD_ENV = 'PROD'
-                VERSION = getVersion()
+                VERSION = getVersion message: 10
                 // VERSION = powershell label: '', returnStdout: true, script: 'if (10 -lt 20) {Write-Host(10)}'
             }
             steps {
