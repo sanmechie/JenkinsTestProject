@@ -1,0 +1,84 @@
+pipeline {
+    agent any
+    enviornment {
+        RELEASE_NUMBER = '20.1'
+    }
+
+    stages {
+        stage('Build'){
+            enviornment {
+                BUILD_ENV = 'PROD'
+            }
+            steps {
+                echo "The release number is ${RELEASE_NUMBER} in env ${BUILD_ENV}"
+            }
+        }
+
+        stage('Parallel'){
+            parallel{
+                stage('Parallel stage 1'){
+                    steps{
+                        echo "The release number is ${env.RELEASE_NUMBER}"
+                        script{
+                            for(int i=0; i <25; i++){
+                                test(i)
+                            }
+                        }
+                    }
+                }
+
+                 stage('Parallel stage 2'){
+                    steps{
+                        echo "The release number is ${env.RELEASE_NUMBER}"
+                        script{
+                            for(int j=0; j <25; j++){
+                                test(j)
+                            }
+                        }
+                    }
+                }               
+            }
+
+        }
+
+        stage('Deploy'){
+
+            input {
+                message 'Deploy?'
+                ok 'Do it'
+            }
+            parameters{
+                string(name: 'TAR_ENV', defaultValue: 'PROD', description: 'This is release env param')
+            }
+            steps{
+                echo "Deploying release in ${TAR_ENV} with release number ${env.RELEASE_NUMBER}"
+            }
+    
+        }
+
+        stage('writeFile'){
+            steps {
+                echo "Writing file"
+                writeFile file: 'Result.txt', text : 'Thanos'
+            }
+        }
+    }
+
+    post {
+
+        always {
+            echo "This will always echo"
+        }
+        success {
+            echo "This will echo on Success ${currentBuild.fullDisplayName}"
+            archiveArtifacts 'Result.txt'
+        }
+        failure {
+             echo "This will echo on Fail ${currentBuild.fullDisplayName}"
+        }
+    }
+}
+
+def test(my_var){
+    println('Printing' + my_var)
+}
