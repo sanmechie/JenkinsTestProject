@@ -4,8 +4,11 @@ param_pipeline OS:genRandom()
 
 
 
+
+
 def genRandom(){
-    int x = Random.nextInt(10)
+    Random rnd = new Random()
+    int x = rnd.nextInt(10)
     if (x < 5) {
         return 'true'
     } else{
