@@ -1,3 +1,4 @@
+def envs = []
 pipeline {
     agent any
     stages {
@@ -10,16 +11,43 @@ pipeline {
 
             }
         }
+
+        stage('Env'){
+            steps {
+                echo "Envs"
+                script {
+                    envs = ['a', 'b', 'c']
+                }
+            }
+            
+        }
+        stage('Deploy and Integration tests') {
+            when {
+                expression {
+                  return !envs.isEmpty()
+                }
+            }
+            steps {
+               script{
+                envs.each{
+                    envs ->
+                    call[envs] = {
+                        echo "Hi ${envs}"
+                    }
+                }
+                parallel call
+               }
+            }
+        }
     }
 
-    environment {
-        
-        TEST = '1'
-    }
+
 
 }
 
 
-def my_func(my_var){
-        println(my_var)
-    }
+running_set = [
+
+    def test()
+
+]
