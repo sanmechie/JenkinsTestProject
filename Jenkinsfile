@@ -44,10 +44,3 @@ pipeline {
 
 
 }
-
-
-running_set = [
-
-    def test()
-
-]
