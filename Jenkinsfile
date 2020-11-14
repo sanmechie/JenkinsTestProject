@@ -31,11 +31,11 @@ pipeline {
                script{
                 envs.each{
                     env ->
-                    call[env] = {
+                    deploys[env] = {
                         echo "Hi ${env}"
                     }
                 }
-                parallel call
+                parallel deploys
                }
             }
         }
