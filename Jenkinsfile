@@ -52,7 +52,7 @@ def performDeploymentStages(String app) {
         echo "Deploying the app ${app}] on node [b]"
     }
 }
-}
+
 
 def my_func(var){
     println(var)
