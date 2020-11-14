@@ -1,4 +1,5 @@
 def envs = []
+def val
 pipeline {
     agent any
     stages {
@@ -40,12 +41,25 @@ pipeline {
 def performDeploymentStages(String app) {
     stage("build ${app}") {
         echo "Building the app [${app}] on node [a]"
+        script{
+            my_func2()
+        }
     }
     stage("deploy ${app}") {
+        when{
+            expression{
+                return val > 5
+            }
+        }
         echo "Deploying the app ${app}] on node [b]"
     }
 }
 
 def my_func(var){
     println(var)
+}
+
+def my_func2(){
+    val= 10
+    return val
 }
