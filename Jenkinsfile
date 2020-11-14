@@ -46,13 +46,12 @@ def performDeploymentStages(String app) {
         }
     }
     stage("deploy ${app}") {
-        when{
-            expression{
-                return val > 5
+    when {
+                expression {return val > 5}
             }
-        }
         echo "Deploying the app ${app}] on node [b]"
     }
+}
 }
 
 def my_func(var){
