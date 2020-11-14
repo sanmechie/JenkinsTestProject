@@ -30,9 +30,9 @@ pipeline {
             steps {
                script{
                 envs.each{
-                    envs ->
-                    call[envs] = {
-                        echo "Hi ${envs}"
+                    env ->
+                    call[env] = {
+                        echo "Hi ${env}"
                     }
                 }
                 parallel call
