@@ -21,28 +21,29 @@ pipeline {
             }
             
         }
-        stage('Deploy and Integration tests') {
-            when {
-                expression {
-                  return !envs.isEmpty()
-                }
-            }
+
+        stage('parallel stage') {
             steps {
-               script{
-                envs.each{
-                    env ->
-                    deploys[env] = {
-                        echo "Hi ${env}"
-                    }
+                script {
+
+                        def apps = [:]
+                        envs.each {
+                            performDeploymentStages(it)
+                        }
+                        parallel apps
                 }
-                parallel deploys
-               }
             }
         }
     }
+}
 
-
-
+def performDeploymentStages(String app) {
+    stage("build") {
+        echo "Building the app [${app}] on node [a]"
+    }
+    stage("deploy") {
+        echo "Deploying the app ${app}] on node [b]"
+    }
 }
 
 def my_func(var){
