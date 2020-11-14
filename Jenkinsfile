@@ -38,10 +38,10 @@ pipeline {
 }
 
 def performDeploymentStages(String app) {
-    stage("build") {
+    stage("build ${app}") {
         echo "Building the app [${app}] on node [a]"
     }
-    stage("deploy") {
+    stage("deploy ${app}") {
         echo "Deploying the app ${app}] on node [b]"
     }
 }
