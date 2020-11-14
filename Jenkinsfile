@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo "Build number is $BUILD_NUMBER"
                 script{
-                    my_func(TEST)
+                    my_func('TEST')
                 }
 
             }
@@ -43,4 +43,8 @@ pipeline {
 
 
 
+}
+
+def my_func(var){
+    println(var)
 }
