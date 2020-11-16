@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo "Envs"
                 script {
-                    envs = ['a', 'b', 'c']
+                    envs = 'a, b, c'
                 }
             }
             
@@ -27,7 +27,7 @@ pipeline {
         stage('parallel stage') {
             steps {
                 script {
-                        envs.each {
+                        envs.tokenize(',').each {
                             running_set[it] = {my_func(it)}
                         }
                         parallel(running_set)
@@ -53,10 +53,10 @@ pipeline {
 
 
 def my_func(var){
-    stage('Build'){
+    stage("Build ${var}"){
         echo "Building ${var}"
     }
-    stage('Deploy'){
+    stage("Deploy ${var}"){
         echo "deploy ${var}"
     }
 }
