@@ -1,6 +1,6 @@
 def envs = []
 def val
-running_set = [:]
+
 pipeline {
     agent any
     stages {
@@ -26,7 +26,9 @@ pipeline {
 
         stage('parallel stage') {
             steps {
+                
                 script {
+                    running_set = [:]
                         envs.tokenize(',').each {
                             running_set[it] = {my_func(it)}
                         }
