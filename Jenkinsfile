@@ -55,14 +55,32 @@ pipeline {
 
 
 def my_func(var){
-    stage("Build ${var}"){
-        script(my_func2())
-    }
-    stage("Deploy ${var}"){
-        if (val < 1){
-            echo "deploy ${var}"
+    def flag = false
+    stage("Deplo and Test ${var}"){
+
+        try {
+            echo "Deploying ${var}"
+
+            flag = true
+
+        } catch (Exception e){
+            unstable("Deploy Failed ${var}")
         }
+
+        if (flag){
+            try {
+        echo "Testing ${var}"
+            flag = true
+
+        } catch (Exception e){
+            unstable("Test Failed ${var}")
+        }
+        }
+
     }
+
+        
+    
 }
 
 
