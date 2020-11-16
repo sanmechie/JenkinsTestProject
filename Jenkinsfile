@@ -53,7 +53,12 @@ pipeline {
 
 
 def my_func(var){
-    println(var)
+    stage('Build'){
+        echo "Building ${var}"
+    }
+    stage('Deploy'){
+        echo "deploy ${var}"
+    }
 }
 
 
