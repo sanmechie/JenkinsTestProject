@@ -59,10 +59,6 @@ def my_func(var){
 }
 
 
-def my_func(var){
-    println(var)
-}
-
 def my_func2(){
     val= 10
     return val
