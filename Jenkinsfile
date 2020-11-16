@@ -65,6 +65,7 @@ def my_func(var){
             x
 
         } catch (Exception e){
+            flag = false
             unstable("Deploy Failed ${var}")
         }
 
