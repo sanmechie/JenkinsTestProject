@@ -56,15 +56,18 @@ pipeline {
 
 def my_func(var){
     stage("Build ${var}"){
-        echo "Building ${var}"
+        script(my_func2())
     }
     stage("Deploy ${var}"){
-        echo "deploy ${var}"
+        if (val < 1){
+            echo "deploy ${var}"
+        }
     }
 }
 
 
 def my_func2(){
-    val= 10
-    return val
+   Random ran = new Random()
+   val = ran.nextInt(5)
+   return val
 }
