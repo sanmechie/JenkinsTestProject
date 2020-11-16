@@ -32,7 +32,7 @@ pipeline {
                         envs.tokenize(',').each {
                             running_set[it] = {my_func(it)}
                         }
-                        parallel running_set
+                        parallel(running_set)
                 }
             }
         }
