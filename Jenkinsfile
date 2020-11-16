@@ -1,8 +1,6 @@
 def envs = []
 def val
-running_set = [
-
-]
+running_set = [:]
 pipeline {
     agent any
     stages {
