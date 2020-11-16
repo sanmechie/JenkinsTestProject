@@ -1,5 +1,8 @@
 def envs = []
 def val
+running_set = [
+
+]
 pipeline {
     agent any
     stages {
@@ -26,30 +29,33 @@ pipeline {
         stage('parallel stage') {
             steps {
                 script {
-
-                        def apps = [:]
                         envs.each {
-                            performDeploymentStages(it)
+                            running_set[it] = {my_func(it)}
                         }
-                        parallel apps
+                        parallel(running_set)
                 }
             }
         }
     }
 }
 
-def performDeploymentStages(String app) {
-    stage("build ${app}") {
-        echo "Building the app [${app}] on node [a]"
-        script{
-            my_func2()
-        }
-    }
-    stage("deploy ${app}") {
-        if (val > 5) {
-        echo "Deploying the app ${app}] on node [b]"
-    }
-    }
+// def performDeploymentStages(String app) {
+//     stage("build ${app}") {
+//         echo "Building the app [${app}] on node [a]"
+//         script{
+//             my_func2()
+//         }
+//     }
+//     stage("deploy ${app}") {
+//         if (val > 5) {
+//         echo "Deploying the app ${app}] on node [b]"
+//     }
+//     }
+// }
+
+
+def my_func(var){
+    println(var)
 }
 
 
