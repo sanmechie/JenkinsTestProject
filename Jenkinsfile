@@ -62,6 +62,7 @@ def my_func(var){
             echo "Deploying ${var}"
 
             flag = true
+            x
 
         } catch (Exception e){
             unstable("Deploy Failed ${var}")
