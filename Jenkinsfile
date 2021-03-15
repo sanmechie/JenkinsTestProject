@@ -63,7 +63,7 @@ pipeline {
 }
 
 
-void executeModuleScripts(String operation) {
+void executeModuleScripts() {
 
           def allModules = [running_set1, running_set2]
 
