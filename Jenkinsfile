@@ -26,16 +26,18 @@ pipeline {
             
         }
         stages{
-        parallel{
-        stage('Dynamic Building') {
-        agent any
+            parallel{
+                    stage('Dynamic Building') {
+                    agent any
         
-              steps {
-                executeModuleScripts('build') // local method, see at the end of this script
-              }
+                    steps {
+                        executeModuleScripts('build') // local method, see at the end of this script
+                    }
+            }
+
             }
         }
-        }
+
     }
 }
 
