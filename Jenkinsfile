@@ -49,7 +49,9 @@ def jobs   = [:]
 //     }
 
 // }
-
+def my_func(var){
+    print(var)
+}
 for (int j=0; j<=1; j++){
 def running_set1 = [
 
@@ -74,9 +76,7 @@ def running_set2 = [
     },
 
 ]
-def my_func(var){
-    print(var)
-}
+
 def modules = [running_set1, running_set2]
 
     char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
