@@ -42,7 +42,8 @@ System.out.println(output);
     jobs["jobs-${output}"] = {
         node {
             stage("Build ${output}") {
-                build job: parallel(running_set1)
+                running_set['a'] = {my_func('a')}
+                build job: parallel(running_set)
             }
         }
     }
