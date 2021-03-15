@@ -1,11 +1,11 @@
 def jobs   = [:]
 
-
-
-for (int i=0; i<=1; i++){
 def  my_func(var){
     print(var)
 }
+
+for (int i=0; i<=1; i++){
+
 
 def running_set1 = [
 
