@@ -25,7 +25,7 @@ pipeline {
             }
             
         }
-        stages('paralel stage'){
+        stage('paralel stage'){
             parallel{
                     stage('Dynamic Building') {
                     agent any
