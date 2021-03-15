@@ -42,17 +42,16 @@ for (int i = 0; i < 20; i++) {
 String output = sb.toString();
 System.out.println(output);
 
-    jobs["jobs-${output}"] = {
-        node {
+    jobs["jobs-${j}"] = {
+      
             
-            stage("Build ${output}") {
+            stage("Build ${j}") {
            script{
                println(module)
-           
-                build job: parallel(module)
+                parallel(module)
             }
             }
-        }
+
     }
 
 }
@@ -69,7 +68,7 @@ pipeline {
                 script {
                 try{
 
-                 parallel jobs
+                 parallel(jobs)
 
                 }
                 catch(err){
