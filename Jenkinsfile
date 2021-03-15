@@ -51,10 +51,10 @@ def my_func(var){
 void executeModuleScripts() {
     running_set1 = [
 
-    'a': {
+    'b1': {
         my_func('a')
     },
-    'b': {
+    'b2': {
         my_func('b')
     }
 
@@ -62,10 +62,10 @@ void executeModuleScripts() {
 
 running_set2 = [
 
-    '1': {
+    'a1': {
         my_func('1')
     },
-    '2': {
+    'a2': {
         my_func('2')
     }
 
