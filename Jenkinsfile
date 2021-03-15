@@ -71,7 +71,7 @@ running_set2 = [
 
 ]
 
-          def allModules = [{running_set1}, {running_set2}]
+          def allModules = [running_set1, running_set2]
 
           allModules.each { module ->  
         
@@ -79,7 +79,7 @@ running_set2 = [
             // here is the trick           
             script {
               stage(module) {
-                        parallel(module)
+                        parallel({module})
 
                   }
 
