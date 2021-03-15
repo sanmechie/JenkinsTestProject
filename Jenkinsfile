@@ -4,7 +4,7 @@ def  my_func(var){
     print(var)
 }
 
-for (int i=0; i<=1; i++){
+for (int j=0; j<=1; j++){
 
 
 def running_set1 = [
@@ -45,7 +45,7 @@ System.out.println(output);
     jobs["jobs-${output}"] = {
         node {
             stage("Build ${output}") {
-                build job: parallel(modules[i])
+                build job: parallel(modules[j])
             }
         }
     }
