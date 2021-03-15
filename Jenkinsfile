@@ -24,11 +24,13 @@ def running_set2 = [
 
 ]
 
-def modules = [running_set1, running_set2]
-modules.each {module ->
 def my_func(var){
     print(var)
 }
+
+def modules = [running_set1, running_set2]
+modules.each {module ->
+
 char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 StringBuilder sb = new StringBuilder(20);
 Random random = new Random();
@@ -60,9 +62,12 @@ pipeline {
         stage('Build apps(s)') {
             steps {
                 script {
-
+                try{
                  parallel jobs
                 
+                }
+                catch(err){
+                    println('Ignore this error')
                 }
             }
         }
