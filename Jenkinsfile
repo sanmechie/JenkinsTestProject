@@ -1,65 +1,68 @@
+def jobs   = [:]
+
+def running_set1 = [
+
+    'UK': {
+        my_func(10)
+    },
+
+    'Lon': {
+        my_func(20)
+    },
+
+]
+
+def running_set2 = [
+
+    'india': {
+        my_func(30)
+    },
+
+    'Kar': {
+        my_func(40)
+    },
+
+]
+def my_func(var){
+    print(var)
+}
+def modules = [running_set1, running_set2]
+modules.each {module ->
+
+char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+StringBuilder sb = new StringBuilder(20);
+Random random = new Random();
+for (int i = 0; i < 20; i++) {
+    char c = chars[random.nextInt(chars.length)];
+    sb.append(c);
+}
+String output = sb.toString();
+System.out.println(output);
+
+    jobs["jobs-${output}"] = {
+        node {
+            stage("Build ${output}") {
+               def my = module
+                build job: parallel(my)
+            }
+        }
+    }
+
+}
 
 
 
 pipeline {
     agent none
-stages {
-    
-     stage('Start Pipeline') {
-         agent any
-        steps {
-            script {
-                sh "echo HELLO moto razr!"
-            }
-        }  
-     }
+    stages {
+        stage('Build apps(s)') {
+            steps {
+                script {
 
-    stage('Initializing Parallel Dynamic Stages'){
-    agent any
-        steps {
-            script {
-                // Run all Nth step for all Projects in Parallel. 
-                buildStages.each { bs -> parallel(bs) }
-
-
-                // OR uncomment the following code (if conditional on boolean variable).
-                /*
-                for (builds in buildStages) {
-                    if (runParallel) {
-                        parallel(builds)
-                    } else {
-                        // run serially (nb. Map is unordered! )
-                        for (build in builds.values()) {
-                            build.call()
-                        }
-                    }
+                 parallel jobs
+                
                 }
-                */        
-
-            }   
+            }
         }
-     } 
-
-    stage('Done') {
-        steps{
-        echo "Done"
-    }   
-    }   
-}
-}
-
-def prepareOneBuildStage(String name) {
-  def proj_name = name.split(' ')[0]
-  def proj_parallel_sub_step = name.split(' ')[1]
-  // return the whole chunkoni (i.e. for a given stage) - will be named dynamically.
-  return {
-    stage("BUILD Project-${proj_name} Parallel_Step_${proj_parallel_sub_step}") {
-      println("Parallel_Step # ${proj_parallel_sub_step} of Project => ${proj_name}")
-      bat(script:"echo \"Parallel_Step # ${proj_parallel_sub_step} of Project => ${proj_name}\" && sleep 20", returnStatus:true)
-      // -- OR -- you can call Gradle task i.e. rpm / any other / any other command here. 
     }
-  }
 }
-
-// Set up List<Map<String,Closure>> describing the builds. section now.
-buildStages = prepareBuildStages()
