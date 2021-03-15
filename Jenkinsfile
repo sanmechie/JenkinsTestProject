@@ -2,7 +2,7 @@ def jobs   = [:]
 
 
 
-running_set1 = [
+def running_set1 = [
 
     'UK': {
         my_func(10)
@@ -14,7 +14,7 @@ running_set1 = [
 
 ]
 
-running_set2 = [
+def running_set2 = [
 
     'india': {
         my_func(30)
@@ -46,6 +46,7 @@ System.out.println(output);
     jobs["jobs-${output}"] = {
         node {
             stage("Build ${output}") {
+               
                 build job: parallel(module)
             }
         }
