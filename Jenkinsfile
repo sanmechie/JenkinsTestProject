@@ -62,12 +62,8 @@ pipeline {
         stage('Build apps(s)') {
             steps {
                 script {
-                try{
-                 parallel jobs
-                
-                }
-                catch(err){
-                    println('Ignore this error')
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    parallel jobs
                 }
             }
         }
