@@ -73,7 +73,7 @@ pipeline {
 
                 }
                 catch(err){
-                    println(eee)
+                    println(err)
                 }
             }
         }
