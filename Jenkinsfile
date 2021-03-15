@@ -58,10 +58,8 @@ void executeModuleScripts() {
         my_func('b')
     }
 
-]
-
-running_set2 = [
-
+    ]
+running_set2= [
     'a1': {
         my_func('1')
     },
@@ -79,7 +77,11 @@ running_set2 = [
             // here is the trick           
             script {
               stage(module) {
-                        parallel({module})
+                        script{
+                            steps{
+                                parallel(module)
+                            }
+                        }
 
                   }
 
