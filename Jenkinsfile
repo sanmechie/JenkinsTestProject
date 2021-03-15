@@ -79,7 +79,7 @@ for (int i = 0; i < 20; i++) {
 String output = sb.toString();
 System.out.println(output);
 
-          def allModules = [{running_set1}, {running_set2}]
+          def allModules = [running_set1, running_set2]
 
           allModules.each { module ->  
           
