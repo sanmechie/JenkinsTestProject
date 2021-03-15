@@ -69,7 +69,7 @@ running_set2= [
 
 ]
 
-          def allModules = [running_set1, running_set2]
+          def allModules = [{running_set1}, {running_set2}]
 
           allModules.each { module ->  
         
