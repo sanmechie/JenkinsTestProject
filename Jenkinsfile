@@ -69,14 +69,24 @@ running_set2= [
 
 ]
 
+char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+StringBuilder sb = new StringBuilder(20);
+Random random = new Random();
+for (int i = 0; i < 20; i++) {
+    char c = chars[random.nextInt(chars.length)];
+    sb.append(c);
+}
+String output = sb.toString();
+
+
           def allModules = [{running_set1}, {running_set2}]
 
           allModules.each { module ->  
-        
+          
 
             // here is the trick           
             script {
-              stage(module) {
+              stage(output) {
                         script{
                             steps{
                                 parallel(module)
