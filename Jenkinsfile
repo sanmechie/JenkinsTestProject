@@ -27,7 +27,7 @@ def  my_func(var){
     print(var)
 }
 modules = [running_set1, running_set2]
-for (int j=0; j < =2; j++){
+for (int j=0; j <=2; j++){
 
 char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 StringBuilder sb = new StringBuilder(20);
