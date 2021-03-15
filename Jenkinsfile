@@ -58,3 +58,8 @@ void executeModuleScripts(String operation) {
               }
             }
           }
+
+
+def my_func(var){
+    println(var)
+}
