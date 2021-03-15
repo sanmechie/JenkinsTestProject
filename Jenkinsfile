@@ -45,9 +45,8 @@ System.out.println(output);
 
     jobs["jobs-${output}"] = {
         node {
-            stage("Build ${output}") {
-               
-                build job: parallel module
+            stage("Build ${output}") { 
+                build job: parallel(module)
             }
         }
     }
@@ -62,7 +61,8 @@ pipeline {
         stage('Build apps(s)') {
             steps {
                 script {
-                    try {parallel jobs
+                    try {
+                        parallel jobs
                     }
                     catch(err){
                         println(err.getMessage())
