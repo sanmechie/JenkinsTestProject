@@ -1,6 +1,6 @@
 def envs = []
 def val
-
+import java.time.*
 
 
 pipeline {
@@ -32,6 +32,10 @@ pipeline {
                     stage('Dynamic Building') {
                     agent any
                     steps {
+                        script{
+                            LocalDateTime t = LocalDateTime.now();
+                            print(t)
+                        }
                         executeModuleScripts() // local method, see at the end of this script
                     }
             }
