@@ -1,11 +1,7 @@
-def jobs         = [:]
+def jobs   = [:]
 
 
-def my_func(var){
-    for (int i=0; i < var; i++){
-        println(i)
-    }
-}
+
 running_set1 = [
 
     'UK': {
@@ -29,6 +25,11 @@ running_set2 = [
     },
 
 ]
+def my_func(var){
+    for (int i=0; i < var; i++){
+        println(i)
+    }
+}
 def modules = [running_set1, running_set2]
 modules.each {module ->
 
