@@ -1,61 +1,26 @@
-def jobs   = [:]
+def applications = env.APPLICATIONS.split(",").findAll { it }.collect { it.trim() }
+def environment  = env.ENVIRONMENT
+def version      = env.VERSION
+def jobs         = [:]
 
-
-
-def running_set1 = [
-
-    'UK': {
-        my_func(10)
-    },
-
-    'Lon': {
-        my_func(20)
-    },
-
-]
-
-def running_set2 = [
-
-    'india': {
-        my_func(30)
-    },
-
-    'Kar': {
-        my_func(40)
-    },
-
-]
-def my_func(var){
-    for (int i=0; i < var; i++){
-        println(i)
-    }
+if (applications.size() < 1) {
+    error("ERROR: APPLICATIONS must be a comma-delimited list of applications to build")
 }
-def modules = [running_set1, running_set2
-]
-modules.each {module ->
 
-char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-StringBuilder sb = new StringBuilder(20);
-Random random = new Random();
-for (int i = 0; i < 20; i++) {
-    char c = chars[random.nextInt(chars.length)];
-    sb.append(c);
-}
-String output = sb.toString();
-System.out.println(output);
-
-    jobs["jobs-${output}"] = {
+for (int i = 0; i < applications.size(); i++) {
+    def app = applications[i]
+    jobs["jobs-${app}"] = {
         node {
-            stage("Build ${output}") {
-               
-                build job: parallel({module})
+            stage("Build ${app}") {
+                build job: 'Application-Builder', parameters: [
+                    string(name: 'APPLICATION', value: app),
+                    string(name: 'ENVIRONMENT', value: environment),
+                    string(name: 'VERSION',     value: version)
+                ]
             }
         }
     }
-
 }
-
-
 
 pipeline {
     agent none
