@@ -1,5 +1,11 @@
 def envs = []
 def val
+
+def my_func(var){
+    for (int i=0; i<=100; i++){
+        println(i)
+    }
+}
 running_set1 = [
 
     'a': {
@@ -80,10 +86,3 @@ void executeModuleScripts() {
               }
             }
           }
-
-
-def my_func(var){
-    for (int i=0; i<=100; i++){
-        println(i)
-    }
-}
