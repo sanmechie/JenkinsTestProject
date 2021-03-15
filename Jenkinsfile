@@ -1,5 +1,26 @@
 def envs = []
 def val
+running_set1 = [
+
+    'a': {
+        my_func('a')
+    },
+    'b': {
+        my_func('b')
+    }
+
+]
+
+running_set2 = [
+
+    '1': {
+        my_func('1')
+    },
+    '2': {
+        my_func('2')
+    }
+
+]
 
 pipeline {
     agent none
@@ -31,7 +52,7 @@ pipeline {
                     agent any
         
                     steps {
-                        executeModuleScripts('build') // local method, see at the end of this script
+                        executeModuleScripts() // local method, see at the end of this script
                     }
             }
 
@@ -44,7 +65,7 @@ pipeline {
 
 void executeModuleScripts(String operation) {
 
-          def allModules = ['module1', 'module2', 'module3', 'module4', 'module11']
+          def allModules = [running_set1, running_set2]
 
           allModules.each { module ->  
         
@@ -52,11 +73,7 @@ void executeModuleScripts(String operation) {
             // here is the trick           
             script {
               stage(module) {
-                   running_set = [:]
-                        
-                            running_set[module] = {my_func(module)}
-                        
-                        parallel(running_set)
+                        parallel(module)
 
                   }
 
@@ -66,5 +83,7 @@ void executeModuleScripts(String operation) {
 
 
 def my_func(var){
-    println(var)
+    for (int i=0; i<=100; i++){
+        println(i)
+    }
 }
