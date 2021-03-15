@@ -41,17 +41,15 @@ pipeline {
 
     }
 }
-
-
-    def my_func(var){
+def my_func(var){
     for (int i=0; i<=100; i++){
         println(i)
     }
+}
+
 
 void executeModuleScripts() {
-
-}
-running_set1 = [
+    running_set1 = [
 
     'a': {
         my_func('a')
