@@ -1,5 +1,5 @@
 def jobs   = [:]
-
+def my_func
 def running_set1 = [
 
     'UK': {
@@ -23,7 +23,7 @@ def running_set2 = [
     },
 
 ]
-def my_func(var){
+ my_func(var){
     print(var)
 }
 def modules = [running_set1, running_set2]
