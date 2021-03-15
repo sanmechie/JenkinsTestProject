@@ -48,9 +48,9 @@ void executeModuleScripts(String operation) {
             script {
               stage(module) {
                    running_set = [:]
-                        envs.tokenize(',').each {
-                            running_set[it] = {my_func(it)}
-                        }
+                        
+                            running_set[module] = {my_func(module)}
+                        
                         parallel(running_set)
 
                   }
