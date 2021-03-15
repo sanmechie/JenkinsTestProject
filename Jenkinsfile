@@ -1,32 +1,7 @@
 def envs = []
 def val
 
-def my_func(var){
-    for (int i=0; i<=100; i++){
-        println(i)
-    }
-}
-running_set1 = [
 
-    'a': {
-        my_func('a')
-    },
-    'b': {
-        my_func('b')
-    }
-
-]
-
-running_set2 = [
-
-    '1': {
-        my_func('1')
-    },
-    '2': {
-        my_func('2')
-    }
-
-]
 
 pipeline {
     agent none
@@ -56,7 +31,6 @@ pipeline {
             parallel{
                     stage('Dynamic Building') {
                     agent any
-        
                     steps {
                         executeModuleScripts() // local method, see at the end of this script
                     }
@@ -86,3 +60,29 @@ void executeModuleScripts() {
               }
             }
           }
+def my_func(var){
+    for (int i=0; i<=100; i++){
+        println(i)
+    }
+}
+running_set1 = [
+
+    'a': {
+        my_func('a')
+    },
+    'b': {
+        my_func('b')
+    }
+
+]
+
+running_set2 = [
+
+    '1': {
+        my_func('1')
+    },
+    '2': {
+        my_func('2')
+    }
+
+]
