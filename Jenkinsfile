@@ -93,7 +93,7 @@ System.out.println(output);
         node {
             stage("Build ${output}") {
                 running_set = [:]
-               running_set['set1'] = {module[j]}
+               running_set['set1'] = {modules[j]}
                 build job: parallel(running_set)
             }
         }
