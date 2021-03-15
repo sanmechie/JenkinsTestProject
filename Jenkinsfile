@@ -2,7 +2,7 @@ def envs = []
 def val
 
 pipeline {
-    
+    agent none
     stages {
         stage('Demo pipeline'){
             agent any
