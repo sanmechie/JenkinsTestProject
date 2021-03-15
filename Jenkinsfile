@@ -38,8 +38,10 @@ stages {
      } 
 
     stage('Done') {
-        println('The whole SHENZI is complete.')
-    }      
+        steps{
+        echo "Done"
+    }   
+    }   
 }
 }
 
