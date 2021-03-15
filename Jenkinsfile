@@ -61,7 +61,7 @@ pipeline {
         stage('Build apps(s)') {
             steps {
                 script {
-                    parallel jobs
+                    parallel(jobs)
                 }
             }
         }
