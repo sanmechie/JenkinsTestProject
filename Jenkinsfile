@@ -42,7 +42,7 @@ System.out.println(output);
     jobs["jobs-${output}"] = {
         node {
             stage("Build ${output}") {
-                build job: parallel(module)
+                build job: parallel(running_set1)
             }
         }
     }
