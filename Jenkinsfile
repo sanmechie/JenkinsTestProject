@@ -41,25 +41,6 @@ pipeline {
 
     }
 }
-
-
-void executeModuleScripts() {
-
-          def allModules = [running_set1, running_set2]
-
-          allModules.each { module ->  
-        
-
-            // here is the trick           
-            script {
-              stage(module) {
-                        parallel(module)
-
-                  }
-
-              }
-            }
-          }
 def my_func(var){
     for (int i=0; i<=100; i++){
         println(i)
@@ -86,3 +67,22 @@ running_set2 = [
     }
 
 ]
+
+void executeModuleScripts() {
+
+          def allModules = [running_set1, running_set2]
+
+          allModules.each { module ->  
+        
+
+            // here is the trick           
+            script {
+              stage(module) {
+                        parallel(module)
+
+                  }
+
+              }
+            }
+          }
+
