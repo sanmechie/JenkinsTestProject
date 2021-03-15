@@ -77,7 +77,7 @@ for (int i = 0; i < 20; i++) {
     sb.append(c);
 }
 String output = sb.toString();
-
+System.out.println(output);
 
           def allModules = [{running_set1}, {running_set2}]
 
@@ -87,11 +87,9 @@ String output = sb.toString();
             // here is the trick           
             script {
               stage(output) {
-                        script{
-                            steps{
+
                                 parallel(module)
-                            }
-                        }
+ 
 
                   }
 
