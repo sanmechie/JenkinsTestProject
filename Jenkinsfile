@@ -6,9 +6,6 @@ def my_func(var){
         println(i)
     }
 }
-
-modules.each {module ->
-
 running_set1 = [
 
     'india': {
@@ -32,9 +29,13 @@ running_set2 = [
     },
 
 ]
-
 def modules = [running_set1, running_set2]
 modules.each {module ->
+
+
+
+
+
 char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 StringBuilder sb = new StringBuilder(20);
 Random random = new Random();
