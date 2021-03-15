@@ -92,8 +92,9 @@ System.out.println(output);
     jobs["jobs-${output}"] = {
         node {
             stage("Build ${output}") {
-               def my = modules[j]
-                build job: parallel(my)
+                running_set = [:]
+               running_set['set1'] = {module[j]}
+                build job: parallel(running_set)
             }
         }
     }
