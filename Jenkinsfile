@@ -13,7 +13,11 @@ stages {
      }
 
     stage('Initializing Parallel Dynamic Stages'){
-        agent any
+    agent  {
+        docker {
+            image 'mcr.microsoft.com/dotnet/core/sdk:3.1.101'
+        }
+    }
         steps {
             script {
                 // Run all Nth step for all Projects in Parallel. 
