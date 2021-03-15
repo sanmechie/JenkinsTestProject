@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "Build number is $BUILD_NUMBER"
                 script{
-                    my_func('TEST')
+                    echo "Hi"
                 }
 
             }
