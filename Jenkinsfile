@@ -46,7 +46,11 @@ void executeModuleScripts(String operation) {
             // here is the trick           
             script {
               stage(module) {
-                  agent any
+                  agent {
+                        docker {
+            image 'mcr.microsoft.com/dotnet/core/sdk:3.1.101'
+        }
+                  }
                steps{
                    echo "${module}"
                }
