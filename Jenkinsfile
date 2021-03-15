@@ -32,10 +32,7 @@ pipeline {
                     stage('Dynamic Building') {
                     agent any
                     steps {
-                        script{
-                            LocalDateTime t = LocalDateTime.now();
-                            print(t)
-                        }
+
                         executeModuleScripts() // local method, see at the end of this script
                     }
             }
@@ -91,7 +88,8 @@ System.out.println(output);
             // here is the trick           
             script {
               stage(output) {
-
+                                                       LocalDateTime t = LocalDateTime.now();
+                            print(t)
                                 parallel(module)
  
 
