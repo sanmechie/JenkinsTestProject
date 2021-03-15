@@ -1,7 +1,5 @@
 def jobs   = [:]
 
-
-
 def running_set1 = [
 
     'UK': {
@@ -26,9 +24,7 @@ def running_set2 = [
 
 ]
 def my_func(var){
-    for (int i=0; i < var; i++){
-        println(i)
-    }
+    print(var)
 }
 def modules = [running_set1, running_set2]
 modules.each {module ->
@@ -62,9 +58,9 @@ pipeline {
         stage('Build apps(s)') {
             steps {
                 script {
-                catchError(message: message, buildResult: 'UNSTABLE', stageResult: 'UNSTABLE'){
-                    parallel jobs
-                }
+
+                 parallel jobs
+                
                 }
             }
         }
