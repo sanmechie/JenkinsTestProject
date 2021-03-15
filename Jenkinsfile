@@ -8,11 +8,11 @@ def my_func(var){
 }
 running_set1 = [
 
-    'india': {
+    'UK': {
         my_func(10)
     },
 
-    'Kar': {
+    'Lon': {
         my_func(20)
     },
 
@@ -31,10 +31,6 @@ running_set2 = [
 ]
 def modules = [running_set1, running_set2]
 modules.each {module ->
-
-
-
-
 
 char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 StringBuilder sb = new StringBuilder(20);
