@@ -48,8 +48,9 @@ System.out.println(output);
             stage("Build ${output}") {
            script{
                println(module)
-           }
+           
                 build job: parallel(module)
+            }
             }
         }
     }
