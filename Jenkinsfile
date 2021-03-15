@@ -27,7 +27,11 @@ pipeline {
         }
 
         stage('Dynamic Building') {
-
+        agent {
+                        docker {
+            image 'mcr.microsoft.com/dotnet/core/sdk:3.1.101'
+        }
+        }
               steps {
                 executeModuleScripts('build') // local method, see at the end of this script
               }
@@ -46,16 +50,23 @@ void executeModuleScripts(String operation) {
             // here is the trick           
             script {
               stage(module) {
-                  agent {
-                        docker {
-            image 'mcr.microsoft.com/dotnet/core/sdk:3.1.101'
-        }
+
                   }
                steps{
-                   echo "${module}"
+                  script {
+                    running_set = [:]
+                        envs.tokenize(',').each {
+                            running_set[it] = {my_func(it)}
+                        }
+                        parallel(running_set)
+                }
                }
               }
             }
           }
 
+}
+
+def my_func(var){
+    println(var)
 }
