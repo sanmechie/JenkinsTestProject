@@ -44,7 +44,6 @@ pipeline {
 }
 def my_func(var){
     for (int i=0; i<=var; i++){
-        sleep(1000)
         println(i)
     }
 }
@@ -54,10 +53,10 @@ void executeModuleScripts() {
     running_set1 = [
 
     'b1': {
-        my_func(5)
+        my_func(100)
     },
     'b2': {
-        my_func(10)
+        my_func(100)
     }
 
     ]
@@ -90,6 +89,7 @@ System.out.println(output);
             script {
               stage(output) {
                                                        LocalDateTime t = LocalDateTime.now();
+                                                       println(t)
                                 parallel(module)
  
 
