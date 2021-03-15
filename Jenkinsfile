@@ -28,7 +28,7 @@ pipeline {
 
         stage('Dynamic Building') {
         agent any
-        }
+        
               steps {
                 executeModuleScripts('build') // local method, see at the end of this script
               }
