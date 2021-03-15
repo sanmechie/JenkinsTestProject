@@ -1,12 +1,5 @@
 def jobs   = [:]
 
-def  my_func(var){
-    print(var)
-}
-
-for (int j=0; j<=1; j++){
-
-
 def running_set1 = [
 
     'UK': {
@@ -30,7 +23,11 @@ def running_set2 = [
     },
 
 ]
-def modules = [running_set1, running_set2]
+def  my_func(var){
+    print(var)
+}
+modules = [running_set1, running_set2]
+modules.each {module ->
 
 char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 StringBuilder sb = new StringBuilder(20);
@@ -45,7 +42,7 @@ System.out.println(output);
     jobs["jobs-${output}"] = {
         node {
             stage("Build ${output}") {
-                build job: parallel(modules[j])
+                build job: parallel(module)
             }
         }
     }
