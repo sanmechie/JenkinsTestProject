@@ -27,22 +27,22 @@ pipeline {
             }
             
         }
-
-
-        stage('Dynamic Building') {
+        stage('paralel stage'){
+            parallel{
+                    stage('Dynamic Building') {
                     agent any
                     steps {
                         executeModuleScripts() // local method, see at the end of this script
                     }
             }
 
-            
-        
+            }
+        }
 
     }
 }
 def my_func(var){
-    for (int i=0; i<=100; i++){
+    for (int i=0; i<=var; i++){
         println(i)
     }
 }
@@ -52,19 +52,19 @@ void executeModuleScripts() {
     running_set1 = [
 
     'b1': {
-        my_func('a')
+        my_func(10)
     },
     'b2': {
-        my_func('b')
+        my_func(20)
     }
 
     ]
 running_set2= [
     'a1': {
-        my_func('1')
+        my_func(30)
     },
     'a2': {
-        my_func('2')
+        my_func(40)
     }
 
 ]
