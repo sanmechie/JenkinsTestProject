@@ -25,7 +25,8 @@ pipeline {
             }
             
         }
-
+        stages{
+        parallel{
         stage('Dynamic Building') {
         agent any
         
@@ -33,6 +34,8 @@ pipeline {
                 executeModuleScripts('build') // local method, see at the end of this script
               }
             }
+        }
+        }
     }
 }
 
