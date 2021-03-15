@@ -55,7 +55,7 @@ def prepareOneBuildStage(String name) {
   return {
     stage("BUILD Project-${proj_name} Parallel_Step_${proj_parallel_sub_step}") {
       println("Parallel_Step # ${proj_parallel_sub_step} of Project => ${proj_name}")
-      sh(script:"echo \"Parallel_Step # ${proj_parallel_sub_step} of Project => ${proj_name}\" && sleep 20", returnStatus:true)
+      bat(script:"echo \"Parallel_Step # ${proj_parallel_sub_step} of Project => ${proj_name}\" && sleep 20", returnStatus:true)
       // -- OR -- you can call Gradle task i.e. rpm / any other / any other command here. 
     }
   }
