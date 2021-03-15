@@ -13,6 +13,7 @@ stages {
      }
 
     stage('Initializing Parallel Dynamic Stages'){
+        agent any
         steps {
             script {
                 // Run all Nth step for all Projects in Parallel. 
