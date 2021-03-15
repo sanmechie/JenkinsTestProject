@@ -45,8 +45,7 @@ System.out.println(output);
     jobs["jobs-${output}"] = {
         node {
             stage("Build ${output}") {
-               def my = module
-                build job: parallel(my)
+                build job: parallel(module)
             }
         }
     }
@@ -64,9 +63,9 @@ pipeline {
             steps {
                 script {
                 try{
-                 catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+
                  parallel jobs
-                 }
+
                 }
                 catch(err){
                     println('Ignore this error')
