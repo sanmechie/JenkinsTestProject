@@ -2,9 +2,10 @@ def envs = []
 def val
 
 pipeline {
-    agent any
+    
     stages {
         stage('Demo pipeline'){
+            agent any
             steps {
                 echo "Build number is $BUILD_NUMBER"
                 script{
@@ -15,6 +16,7 @@ pipeline {
         }
 
         stage('Env'){
+            agent any
             steps {
                 echo "Envs"
                 script {
@@ -24,70 +26,32 @@ pipeline {
             
         }
 
-        stage('parallel stage') {
-            steps {
-                
-                script {
-                    running_set = [:]
-                        envs.tokenize(',').each {
-                            running_set[it] = {my_func(it)}
-                        }
-                        parallel(running_set)
-                }
+        stage('Dynamic Building') {
+
+              steps {
+                executeModuleScripts('build') // local method, see at the end of this script
+              }
             }
-        }
     }
 }
 
-// def performDeploymentStages(String app) {
-//     stage("build ${app}") {
-//         echo "Building the app [${app}] on node [a]"
-//         script{
-//             my_func2()
-//         }
-//     }
-//     stage("deploy ${app}") {
-//         if (val > 5) {
-//         echo "Deploying the app ${app}] on node [b]"
-//     }
-//     }
-// }
 
+void executeModuleScripts(String operation) {
 
-def my_func(var){
-    def flag = false
-    stage("Deplo and Test ${var}"){
+          def allModules = ['module1', 'module2', 'module3', 'module4', 'module11']
 
-        try {
-            echo "Deploying ${var}"
-
-            flag = true
-            x
-
-        } catch (Exception e){
-            flag = false
-            unstable("Deploy Failed ${var}")
-        }
-
-        if (flag){
-            try {
-        echo "Testing ${var}"
-            flag = true
-
-        } catch (Exception e){
-            unstable("Test Failed ${var}")
-        }
-        }
-
-    }
-
+          allModules.each { module ->  
         
-    
-}
 
+            // here is the trick           
+            script {
+              stage(module) {
+                  agent any
+               steps{
+                   echo "${module}"
+               }
+              }
+            }
+          }
 
-def my_func2(){
-   Random ran = new Random()
-   val = ran.nextInt(5)
-   return val
 }
