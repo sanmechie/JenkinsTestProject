@@ -31,6 +31,7 @@ def my_func(var){
 def modules = [running_set1, running_set2]
 for (int j=0; j<modules.size();j++){
 def module = modules[j]
+println(module)
 char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 StringBuilder sb = new StringBuilder(20);
 Random random = new Random();
