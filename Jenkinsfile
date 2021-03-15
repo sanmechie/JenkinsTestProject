@@ -4,7 +4,9 @@
 pipeline {
     agent none
 stages {
+    
      stage('Start Pipeline') {
+         agent any
         steps {
             script {
                 sh "echo HELLO moto razr!"
@@ -13,11 +15,7 @@ stages {
      }
 
     stage('Initializing Parallel Dynamic Stages'){
-    agent  {
-        docker {
-            image 'mcr.microsoft.com/dotnet/core/sdk:3.1.101'
-        }
-    }
+    agent any
         steps {
             script {
                 // Run all Nth step for all Projects in Parallel. 
